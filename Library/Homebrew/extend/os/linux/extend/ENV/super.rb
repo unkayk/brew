@@ -10,12 +10,12 @@ module OS
       requires_ancestor { ::Superenv }
 
       module ClassMethods
-        sig { returns(Pathname) }
+        sig { returns(::Pathname) }
         def shims_path
           HOMEBREW_SHIMS_PATH/"linux/super"
         end
 
-        sig { returns(T.nilable(Pathname)) }
+        sig { returns(T.nilable(::Pathname)) }
         def bin
           shims_path.realpath
         end

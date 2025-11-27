@@ -13,16 +13,16 @@ module OS
       sig { returns(MacOSVersion) }
       attr_reader :version
 
-      sig { returns(Pathname) }
+      sig { returns(::Pathname) }
       attr_reader :path
 
       sig { returns(Symbol) }
       attr_reader :source
 
-      sig { params(version: MacOSVersion, path: T.any(String, Pathname), source: Symbol).void }
+      sig { params(version: MacOSVersion, path: T.any(String, ::Pathname), source: Symbol).void }
       def initialize(version, path, source)
         @version = version
-        @path = T.let(Pathname(path), Pathname)
+        @path = T.let(Pathname(path), ::Pathname)
         @source = source
       end
     end
@@ -64,7 +64,7 @@ module OS
         Dir["#{sdk_prefix}/MacOSX*.sdk"].each do |sdk_path|
           next unless sdk_path.match?(SDK::VERSIONED_SDK_REGEX)
 
-          version = read_sdk_version(Pathname.new(sdk_path))
+          version = read_sdk_version(::Pathname.new(sdk_path))
           next if version.nil?
 
           @all_sdks << SDK.new(version, sdk_path, source)

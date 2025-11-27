@@ -23,7 +23,7 @@ RSpec.describe OS::Linux::Ld do
 
     it "returns the path to a known dynamic linker" do
       allow(File).to receive(:executable?).with(ld_so).and_return(true)
-      expect(described_class.system_ld_so).to eq(Pathname(ld_so))
+      expect(described_class.system_ld_so).to eq(::Pathname(ld_so))
     end
 
     it "returns nil when there is no known dynamic linker" do

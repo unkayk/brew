@@ -5,7 +5,6 @@ require "macos_version"
 
 require "os/mac/xcode"
 require "os/mac/sdk"
-require "os/mac/keg"
 
 module OS
   # Helper module for querying system information on macOS.
@@ -159,7 +158,7 @@ module OS
     # Returns the path to an SDK or nil, following the rules set by {sdk}.
     #
     # @api public
-    sig { params(version: T.nilable(MacOSVersion)).returns(T.nilable(Pathname)) }
+    sig { params(version: T.nilable(MacOSVersion)).returns(T.nilable(::Pathname)) }
     def self.sdk_path(version = nil)
       s = sdk(version)
       s&.path
@@ -171,7 +170,7 @@ module OS
     # 2. On CLT-only systems, return the CLT SDK.
     #
     # @api public
-    sig { params(version: T.nilable(MacOSVersion)).returns(T.nilable(Pathname)) }
+    sig { params(version: T.nilable(MacOSVersion)).returns(T.nilable(::Pathname)) }
     def self.sdk_path_if_needed(version = nil)
       sdk_path(version)
     end
@@ -211,7 +210,7 @@ module OS
       paths.uniq
     end
 
-    sig { params(ids: String).returns(T.nilable(Pathname)) }
+    sig { params(ids: String).returns(T.nilable(::Pathname)) }
     def self.app_with_bundle_id(*ids)
       require "bundle_version"
 

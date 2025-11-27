@@ -11,7 +11,7 @@ module OS
 
         requires_ancestor { ::DevelopmentTools }
 
-        sig { params(tool: T.any(String, Symbol)).returns(T.nilable(Pathname)) }
+        sig { params(tool: T.any(String, Symbol)).returns(T.nilable(::Pathname)) }
         def locate(tool)
           @locate ||= T.let({}, T.nilable(T::Hash[T.any(String, Symbol), Pathname]))
           @locate.fetch(tool) do |key|
